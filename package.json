@@ -1,0 +1,10 @@
+{
+  "name": "wifi-experience",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "promise": "^8.0.2",
+    "promise-readable": "^3.1.5",
+    "socket.io": "^2.2.0"
+  }
+}
