@@ -1,3 +1,0 @@
-C:\Users\Andrew\Desktop\wifi-experience\obj\Debug\FromExistingCode1.njsprojResolveAssemblyReference.cache
-C:\Users\Andrew\Desktop\wifi-experience\obj\Debug\FromExistingCode1.njsproj.CoreCompileInputs.cache
-C:\Users\Andrew\Desktop\wifi-experience\bin\Microsoft.NodejsTools.WebRole.dll
