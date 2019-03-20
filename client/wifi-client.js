@@ -1,6 +1,6 @@
 const
     io = require("socket.io-client"),
-	ioClient = io.connect("http://192.168.1.3:3000");
+	ioClient = io.connect("http://192.168.1.10:3000");
 
 const { exec } = require('child_process');
 
@@ -10,9 +10,8 @@ function intervalFunc(){
       console.error(`exec error: ${error}`);
       return;
     }
-	
-    var jsonObj = JSON.parse(`${stdout}`);
-    ioClient.emit('ssid', jsonObj);
+	console.log(`${stdout}`)
+    ioClient.emit('ssid', `${stdout}`);
   });
 };
 
