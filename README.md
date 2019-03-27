@@ -38,10 +38,10 @@ create table (ID, ssid) ID is primary key that's auto generated and ssid is json
 ```
 
 Raspbian Image
-FTP setup
-Working Program 
-Node.js (apt-get install nodejs)
-Socket.io client (npm install socket.io-client)
+  FTP setup
+  Working Program 
+    Node.js (apt-get install nodejs)
+    Socket.io client (npm install socket.io-client)
 
 ```
 The client needs socket.io-client.
