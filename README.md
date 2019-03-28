@@ -53,7 +53,6 @@ create table (ID, ssid) ID is primary key that's auto generated and ssid is json
 
 
 ### Raspberry Pi OS installation & Configuration
-Raspbian Image
 * FTP setup
 * Working Program 
   * Node.js (apt-get install nodejs)
