@@ -15,7 +15,7 @@ Raspberry Pi's collect wireless data using iw_list and regex. All collected data
 
 ***
 ## Installation/Dependencies
-### Server OS Installation & Configuration
+### Server OS/Dependencies Installation
 Linux Server Install (Debian - latest command line only)
 SSH for server
 sudo apt-get install -y openssh-server openssh-client
@@ -52,7 +52,7 @@ create table (ID, ssid) ID is primary key that's auto generated and ssid is json
 ```
 
 
-### Raspberry Pi OS installation & Configuration
+### Raspberry Pi OS/Dependencies Installation
 * FTP setup
 * Working Program 
   * Node.js (apt-get install nodejs)
