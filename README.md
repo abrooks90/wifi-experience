@@ -1,7 +1,20 @@
-# wifi-experience
-Application for gauging the user experience on wifi.
-Documentation Project 12 - KSU WiFi Monitoring
+# Capstone Project 12
+Application for gauging the user experience on wifi.<br>
+Project 12 - KSU WiFi Monitoring<br>
 
+Raspberry Pi's collect wireless data using iw_list and regex. All collected data is sent to the server as a JSON object and inserted into the PostgreSQL database as JSONP.
+
+1. Backend
+   * Node.js
+   * Socket.io
+   * Express.js
+   * PostgreSQL
+2. Client
+   * React.js
+   * Socket.io-client
+
+***
+## Configuration
 Linux Server Install (Debian - latest command line only)
 SSH for server
 sudo apt-get install -y openssh-server openssh-client
