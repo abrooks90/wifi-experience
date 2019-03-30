@@ -33,12 +33,15 @@ server.on('error', function (err) {
         }
 });
 
-// Raspberry
+// Create namespaces for the Pi and React clients
 var piClient = server.of('/pi');
+var reactClient = server.of('/react');
+
 piClient.on('connection', (socket) => {
 	console.log("Client Connected");
 	
 	socket.on('ssid', function(data){
+		reactClient.emit('FromAPI', data);
 		var queryString = `INSERT INTO wifi_experience.ssid (ssid) VALUES ('${data}')`
 
 		queryString = queryString.replace(/(\r\n|\n|\r)/gm,"");
@@ -50,7 +53,8 @@ piClient.on('connection', (socket) => {
 	});
 });
 
-var reactClient = server.of('/react');
 reactClient.on('connection', function(socket) {
    console.log('someone connected');
-   });
+});
+
+

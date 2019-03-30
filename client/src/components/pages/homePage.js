@@ -7,7 +7,7 @@ class Homepage extends Component {
     super();
     this.state = {
       response: false,
-      endpoint: "http://192.168.1.10:3001/testing"
+      endpoint: "http://192.168.1.10:3001/react"
     };
   }
   
@@ -22,7 +22,11 @@ class Homepage extends Component {
 	
     return (
 		<div className="wrap">			
-			Homepage Content
+			{response
+          ? <p>
+              {response}
+            </p>
+          : <p>Loading...</p>}
 		</div>
     );
   }

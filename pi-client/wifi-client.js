@@ -1,6 +1,6 @@
 const
     io = require("socket.io-client"),
-	ioClient = io.connect("http://192.168.1.10:3001");
+	ioClient = io.connect("http://192.168.1.10:3001/pi");
 
 const { exec } = require('child_process');
 
