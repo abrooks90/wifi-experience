@@ -11,7 +11,9 @@ Raspberry Pi's collect wireless data using iw_list and regex. All collected data
    * PostgreSQL
 2. Client
    * React.js
+   * Chart.js
    * Socket.io-client
+   
 
 ***
 ## Installation/Dependencies
