@@ -11,6 +11,7 @@ import re
 import subprocess
 import json
 import time
+from uuid import getnode as get_mac
 
 VERSION_RGX = re.compile("version\s+\d+", re.IGNORECASE)
 
@@ -336,9 +337,15 @@ def get_interfaces(interface="wlan0"):
             properties: dictionary of iwlist attributes
     """
     return get_parsed_cells(call_iwlist(interface).split("\n"))
+	
+"""Convert the list to a string with JSON dumps so we can append the mac address string later"""
+value_list = json.dumps(get_interfaces())
 
-value_list = get_interfaces()
-print json.dumps(value_list)
+"""Retrieve the mac and insert it as the key for the entire JSON object"""
+mac = get_mac()
+macString = ':'.join(("%012X" % mac)[i:i+2] for i in range(0, 12, 2))
+macString = '{"' + macString + '":' + value_list + "}"
+print macString
 
 
 
