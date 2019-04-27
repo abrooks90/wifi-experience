@@ -10,7 +10,7 @@
 import re
 import subprocess
 import json
-import time
+import datetime
 from uuid import getnode as get_mac
 
 VERSION_RGX = re.compile("version\s+\d+", re.IGNORECASE)
@@ -344,7 +344,7 @@ value_list = json.dumps(get_interfaces())
 """Retrieve the mac and insert it as the key for the entire JSON object"""
 mac = get_mac()
 macString = ':'.join(("%012X" % mac)[i:i+2] for i in range(0, 12, 2))
-macString = '{"' + macString + '":' + value_list + "}"
+macString = '{"mac": "' + macString + '", "timestamp": "'+str(datetime.datetime.now())+'", "ssid":' + value_list + "}"
 print macString
 
 

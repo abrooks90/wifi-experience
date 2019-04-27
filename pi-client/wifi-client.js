@@ -10,9 +10,20 @@ function intervalFunc(){
       console.error(`exec error: ${error}`);
       return;
     }
-	console.log(`${stdout}`)
+	console.log(`${stdout}`);
+	console.log(JSON.parse(`${stdout}`));
     ioClient.emit('ssid', `${stdout}`);
   });
 };
 
-setInterval(intervalFunc, 5000);
+var timer;
+
+ioClient.on('disconnect', function(socket) {
+	console.log('Disconnected: Stop sending data until reconnect...');
+	clearInterval(timer);
+});
+
+ioClient.on('connect', function(socket) {
+	console.log('Connected: Sending data to socket...');
+	timer = setInterval(intervalFunc, 5000);
+});
