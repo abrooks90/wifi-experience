@@ -24,24 +24,42 @@ app.get('/', function(req, res) {
 
 
 //Instantiate connection with PostgreSQL -- This needs to be changed to environmental variables at some point.
-var con_string = 'tcp://node:JSONInsert!12@localhost/wifi_experience';
+var con_string = 'tcp://node:capstone@localhost/wifi_experience';
 var pg_client = new pg.Client(con_string);
 pg_client.connect();
 
 // Listens for the pg_notify from PostgreSQL when a record is inserted into the SSID table
 var query = pg_client.query('LISTEN live_update')
 pg_client.on('notification', function(data){
-	let queryString = `SELECT * FROM live_view`;
-	pgsql(queryString);
+	let queryString = {
+		text: `SELECT * FROM realtime_view`,
+	};
+	
+	pg_client.query(queryString, function(err, res){
+		if (err) return console.error(err);
+		console.log(res.rows);
+		let data = res.rows;
+		data = JSON.stringify(data);
+		
+		/*
+		data.forEach(row =>{
+		console.log(`Wireless: ${row.row_to_json.wireless[0]}`)		
+		})
+		*/
+		
+		reactClient.emit('FromAPI', data);
+	});
+		
+		
 });
 
 
 //Function to run Postgres queries
 function pgsql(queryString){
-	pg_client.query(queryString, function(err, data){
+	pg_client.query(queryString, function(err, res){
 		if (err) return console.error(err);
-		console.log(data);
-	});
+		console.log(res);
+});
 }
 
 
@@ -61,12 +79,6 @@ piClient.on('connection', (socket) => {
 	console.log("Pi Connected");
 	
 	socket.on('ssid', function(data){
-		
-		let piData = JSON.parse(data)
-		
-		/* Used to send data to the browser. Need to emit from the pgsql call in our notification listener.
-		reactClient.emit('FromAPI', data);
-		*/
 		
 		// Create the INSERT statement and remove new lines amongst other things
 		let queryString = `INSERT INTO wifi_experience.ssid (ssid) VALUES ('${data}')`;
