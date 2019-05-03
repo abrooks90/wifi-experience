@@ -1,0 +1,34 @@
+********Initial setup prior to being able to run SSH********
+Download Raspbian OS:
+https://www.raspberrypi.org/downloads/raspbian/
+* Raspbian Stretch Lite, Version April 2019
+* Kernel: 4.14
+
+Flashing the SD card:
+Using balencaEtcher version 1.4.9
+https://www.balena.io/etcher/
+* Select the zip file -> select the SD card -> Flash the SD card
+
+Raspi Config Settings:
+Network
+* sudo raspi-config
+* Select "Network Options" -> enter your wireless SSID and password.
+
+SSH (still in raspi-config interface)
+* Select "Interfacing Options"
+* Enable SSH (Option 2)
+
+Timezone
+* Select "Localisation Options"
+* Set the timezone
+
+********You can now continue the setup from SSH (Make sure you have your device IP)********
+Install Node.js v10.15.4 and NPM 6.4.1:
+sudo apt-get install curl software-properties-common
+curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo apt-get install -y nodejs
+
+Installing the files and dependencies:
+* Using whatever FTP client you prefer, connect to the Pi and copy the pi-client folder to /home/pi
+* Using SSH, navigate to /pi-client/iw_parse-master -> add execute to iw_parse.py. (chmod +x iw_parse.py)
+* In the pi-client folder (package.json should be in the root) run "npm install" -- This command uses the package.json file to install all dependencies.
