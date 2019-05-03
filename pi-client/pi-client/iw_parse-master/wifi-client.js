@@ -1,30 +1,22 @@
 const net = require('net');
-const { exec } = require('child_process');
-
-
-var client = new net.Socket();
-client.connect(3000, '192.168.1.3', function() {});
-
-function intervalFunc(){
-  exec('./iw_parse-master/iw_parse.py', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      return;
-    }
-	
-    /*var jsonObj = JSON.parse(`${stdout}`);
-    client.write(jsonObj);*/
-	
-	client.write(`${stdout}`);
-  });
-};
-
-setInterval(intervalFunc, 5000);
-
-
-
 /*let {PythonShell} = require('python-shell')*/
 /*var pyshell = new PythonShell('./iw_parse-master/iw_parse.py');*/
+let {PythonShell} = require('python-shell')
+
+
+const { exec } = require('child_process');
+var iwlist = exec('./iw_parse-master/iw_parse.py', (error, stdout, stderr) => {
+  if (error) {
+    /*console.error(`exec error: ${error}`);*/
+    return;
+  }
+  
+  console.log(`${stdout}`);
+  
+});
+
+
+
 
 /*
 PythonShell.run('./iw_parse-master/iw_parse.py', null, function (err, results) {
