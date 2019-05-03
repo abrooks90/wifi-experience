@@ -1,0 +1,15 @@
+{
+  "name": "pi-client",
+  "version": "1.0.0",
+  "description": "Raspberry Pi client script",
+  "main": "wifi-client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Brooks",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
+  }
+}
